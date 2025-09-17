@@ -2,7 +2,9 @@
 Este repositorio para entregas de web 2° de tp especial obligatorios para aprobar la materia
 
 #Integrantes:
+
 Gustavo Nahuel Rio| ( riogustavo.2001@gmail.com)
+
 fer | ( @gmail.com)
 
 #Temática:
