@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-09-2025 a las 18:25:49
+-- Tiempo de generación: 17-10-2025 a las 16:43:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -11,13 +11,14 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `Ciber Dragon`
+-- Base de datos: `ciber dragon`
 --
 
 -- --------------------------------------------------------
@@ -70,6 +71,45 @@ INSERT INTO `juegos` (`juegoId`, `nombreJuego`, `fechaLanzamiento`, `desarrollad
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `reviewId` int(11) NOT NULL,
+  `descripcion` varchar(200) NOT NULL,
+  `puntuacion` int(11) NOT NULL,
+  `usuario` varchar(200) NOT NULL,
+  `juegoId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `reviews`
+--
+
+INSERT INTO `reviews` (`reviewId`, `descripcion`, `puntuacion`, `usuario`, `juegoId`) VALUES
+(11, 'Un mundo muy amplio y muchas cosas para hacer, me encantó.', 5, 'webadmin', 13),
+(12, 'Muy pay to win, difícil cuando recién se arranca a jugar.', 2, 'webadmin', 21),
+(13, 'Buen juego pero muy violento.', 4, 'webadmin', 22);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `usuario` varchar(200) NOT NULL,
+  `contra` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`usuario`, `contra`) VALUES
+('webadmin', '$2y$10$5iX0BZS3E2qRR090rtKUqOfAc0XDL6XFpVFBpWODBWxIsw/t65DRq');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -85,6 +125,20 @@ ALTER TABLE `desarrolladores`
 ALTER TABLE `juegos`
   ADD PRIMARY KEY (`juegoId`),
   ADD KEY `desarrollador` (`desarrolladorId`) USING BTREE;
+
+--
+-- Indices de la tabla `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`reviewId`),
+  ADD KEY `juegoId` (`juegoId`),
+  ADD KEY `usuario` (`usuario`) USING BTREE;
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -103,6 +157,12 @@ ALTER TABLE `juegos`
   MODIFY `juegoId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT de la tabla `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `reviewId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -112,9 +172,14 @@ ALTER TABLE `juegos`
 ALTER TABLE `juegos`
   ADD CONSTRAINT `juegos_ibfk_1` FOREIGN KEY (`desarrolladorId`) REFERENCES `desarrolladores` (`desarrolladorId`);
 
+--
+-- Filtros para la tabla `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`usuario`) REFERENCES `usuarios` (`usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`juegoId`) REFERENCES `juegos` (`juegoId`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
