@@ -1,0 +1,39 @@
+<?php require_once './templates/header.phtml' ?>
+
+<form method='POST' action='add-new-game'>
+    <div class="form-group">
+      <label for="nombreJuego">Nombre</label>
+      <input type="text" class="form-control" id="nombreJuego" name='nombreJuego' placeholder="Nombre del juego">
+    </div>
+    <div class="form-group">
+      <label for="fechaLanzamiento">Nombre</label>
+      <input type="date" class="form-control" id="fechaLanzamiento" name='fechaLanzamiento' placeholder="Fecha de creación">
+    </div>
+    <div class="form-group">
+        <label for="desarrolladorId">Desarrollador</label>
+        <select class="form-control" name='desarrolladorId' id='desarrolladorId'>
+            <?php foreach($devs as $dev): ?>
+            <option value='<?= $dev->desarrolladorId ?>'><?= $dev->nombreDesarrollador ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="edad">Edad mínima</label>
+        <input type="number" min='0' class="form-control" id="edad" name='edad' placeholder="Edad mínima">
+    </div>
+    <div class="form-group">
+        <label for="descripcionJuego">Descripción del juego</label>
+        <textarea class="form-control" id="descripcionJuego" name='descripcionJuego' placeholder="Descripción del juego"></textarea>
+    </div><div class="form-group">
+        <label for="imagen">Imagen</label>
+        <input type="text" class="form-control" id="imagen" name='imagen' placeholder="Inserte el link de la imagen">
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+    <?php if ($message != null): ?>
+    <div>
+        <p><?= $message ?></p>
+    </div>
+    <?php endif ?>
+</form>
+
+<?php require_once './templates/footer.phtml' ?>

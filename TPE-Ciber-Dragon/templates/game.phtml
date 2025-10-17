@@ -1,0 +1,21 @@
+<?php require './templates/header.phtml' ?>
+<div class="contenedor-juego">
+    <h1 class='titulo-juego'><?= $game->nombreJuego ?></h1>
+    <div class="contenedor-imagen-juego">
+        <img class="imagen-juego" src="<?= $game->imagen ?>">
+    </div>
+    <p class="fecha-juego">
+        Fecha de lanzamiento: <?= $game->fechaLanzamiento ?>
+    </p>
+    <p class="desarrollador-juego">
+        Desarrollador: <?= $game->nombreDesarrollador ?>
+    </p>
+    <p class="descripcion-juego">
+        <?= $game->descripcionJuego ?>
+    </p>
+    <p class="edad-juego">
+        Juego apto para mayores de <?= $game->edad ?> años.
+    </p>
+
+</div>
+<?php require './templates/footer.phtml' ?>

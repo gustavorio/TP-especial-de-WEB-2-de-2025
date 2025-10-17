@@ -1,0 +1,19 @@
+<?php require_once './templates/header.phtml' ?>
+
+<form method='POST' action='dev-edited/<?= $dev->desarrolladorId ?>'>
+    <div class="form-group">
+      <label for="nombreDesarrollador">Nombre</label>
+      <input type="text" class="form-control" id="nombreDesarrollador" name='nombreDesarrollador' placeholder="Nombre del desarrollador" value='<?= $dev->nombreDesarrollador ?>'>
+    </div>
+    <div class="form-group">
+      <label for="fechaCreacion">Fecha de creación</label>
+      <input type="date" class="form-control" id="fechaCreacion" name='fechaCreacion' placeholder="Fecha de creación" value='<?= $dev->fechaCreacion ?>'>
+    </div>
+    <div class="form-group">
+        <label for="origen">Origen</label>
+        <input type="text" class="form-control" id="origen" name='origen' placeholder="País de procedencia" value='<?= $dev->origen ?>'>
+      </div>
+    <button type="submit" class="btn btn-primary">Editar</button>
+</form>
+
+<?php require_once './templates/footer.phtml' ?>

@@ -1,0 +1,43 @@
+<?php require './templates/header.phtml' ?>
+<img src="css\imagenes extras\login.jpg" width="400" height="400"  class="img-login">
+<h1>Busca ingresar la informacion de los maestro?,... je bien solo espero tenga tu acceso habilitado sino sera rechasado por mi</h1>
+<form method="POST" action="auth">
+  <div class="form-group">
+    <label for="usuario">Email</label>
+    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Usuario">
+  </div>
+  <div class="form-group">
+    <label for="contra">Contraseña</label>
+    <input type="password" class="form-control" id="contra" name="contra" placeholder="Contraseña">
+  </div>
+  <?php if ($message != null): ?>
+  <div>
+    <h2 class="text-warning"><?= $message ?></h2>
+  </div>
+  <?php endif ?>
+  <button type="submit" class="btn btn-primary">Ingresar</button>
+</form>
+
+<?php require './templates/footer.phtml' ?>
+<style>
+  .img-login {
+    display: block;
+    margin: 0 auto; 
+    display: block;
+    margin: 0 auto;           
+    border: 3px solid black; 
+    border-radius: 50%;       
+    transition: border-color 0.3s; 
+  }
+
+  .img-login:hover {
+    border-color: purple;        
+  }
+  body {
+        background-color: rgb(126, 126, 126);
+}
+
+main {
+        background-color: rgb(126, 126, 126);
+}
+</style>

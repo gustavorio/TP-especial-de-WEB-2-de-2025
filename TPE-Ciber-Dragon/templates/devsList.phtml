@@ -1,0 +1,56 @@
+<?php require './templates/header.phtml' ?>
+<img src="css\imagenes extras\link.jpg" width="400" height="400"  class="img-login">
+<h1>Ellos son dueños de los juegos que amas, pero no son tus aliados ni tus enemigo. no confie ciegamente siempre debe tener ojo abierto con ellos.</h1>
+<?php if(AuthHelper::isLogged()): ?>
+<div class='detalles-desarrolladores'>
+    <a href='add-developer' class='btn btn-success'>+ Agregar</a>
+</div>
+<?php endif ?>
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Fecha de creación</th>
+            <th scope="col">Origen</th>
+            <?php if(AuthHelper::isLogged()): ?>
+            <th scope="col">Edición</th>
+            <?php endif ?>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($devs as $dev): ?>
+        <tr>
+            <td><?= $dev->nombreDesarrollador ?></td>
+            <td><?= $dev->fechaCreacion ?></td>
+            <td><?= $dev->origen ?></td>
+            <?php if(AuthHelper::isLogged()): ?>
+            <td><a href='edit-dev/<?= $dev->desarrolladorId ?>' class="btn btn-warning">Editar</a><a href='delete-dev/<?= $dev->desarrolladorId ?>' class="btn btn-danger">Borrar</a></td>
+            <?php endif ?>
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+</table>
+<style>
+  .img-login {
+    display: block;
+    margin: 0 auto; 
+    display: block;
+    margin: 0 auto;           
+    border: 3px solid black; 
+    border-radius: 50%;       
+    transition: border-color 0.3s; 
+  }
+
+  .img-login:hover {
+    border-color: blue;        
+  }
+  body {
+        background-color: rgb(126, 126, 126);
+}
+
+main {
+        background-color: rgb(126, 126, 126);
+}
+</style>
+
+<?php require './templates/footer.phtml' ?>

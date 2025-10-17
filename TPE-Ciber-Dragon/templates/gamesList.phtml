@@ -1,0 +1,63 @@
+<?php require './templates/header.phtml' ?>
+<img src="css\imagenes extras\inicio.jpg" width="400" height="400"  class="img-inicio">
+<h1>Bienvenido a mis dominios mortal, espero que la informacion que en encuentre en mis tierra sea de tu ultilida o interez.</h1>
+<div class='detalles-juegos'>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+        Filtrar por desarrollador
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="games">Mostrar todos</a>
+        <?php foreach($devs as $dev): ?>
+        <a class="dropdown-item" href="games/developer/<?= $dev->desarrolladorId ?>"><?= $dev->nombreDesarrollador ?></a>
+        <?php endforeach ?>
+    </div>
+    <?php if(AuthHelper::isLogged()): ?>
+    <div>
+        <a href='add-game' class='btn btn-success'>+ Agregar</a>
+    </div>
+    <?php endif ?>
+</div>
+
+<table class="table table-hover table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Desarrollador</th>
+            <th scope="col">Fecha de lanzamiento</th>
+            <th scope="col">Edad mínima</th>
+            <?php if(AuthHelper::isLogged()): ?>
+            <th scope="col">Edición</th>
+            <?php endif ?>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($games as $game): ?>
+        <tr>
+            <td><a class="listed-game-title" href='game/<?= $game->juegoId ?>'><?= $game->nombreJuego ?></a></td>
+            <td><?= $game->nombreDesarrollador ?></td>
+            <td><?= $game->fechaLanzamiento ?></td>
+            <td><?= $game->edad ?></td>
+            <?php if(AuthHelper::isLogged()): ?>
+            <td><a href='edit-game/<?= $game->juegoId ?>' class="btn btn-warning">Editar</a><a href='delete-game/<?= $game->juegoId ?>' class="btn btn-danger">Borrar</a></td>
+            <?php endif ?>
+        </tr>
+    <?php endforeach ?>
+    </tbody>
+</table>
+
+<?php require './templates/footer.phtml' ?>
+<style>
+  .img-inicio {
+    display: block;
+    margin: 0 auto;
+    display: block;
+    margin: 0 auto;           
+    border: 3px solid black;  
+    border-radius: 50%;       
+    transition: border-color 0.3s; 
+  }
+
+  .img-inicio:hover {
+    border-color: red;       
+  }
+</style>
